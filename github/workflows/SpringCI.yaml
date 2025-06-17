@@ -22,7 +22,7 @@ jobs:
         distribution: 'adopt'
  
     - name: Build with Maven
-      run: mvn clean package -DskipTests --file publicze_platform/pom.xml
+      run: mvn clean package -DskipTests --file pom.xml
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -31,8 +31,8 @@ jobs:
       uses: aliyun/acr-login@v1
       with:
         login-server: https://crpi-5ib73szbrjh3wsd8.cn-hangzhou.personal.cr.aliyuncs.com  # 你的ACR登录服务器地址，例如 registry.cn-hangzhou.aliyuncs.com
-        username: '${{ secrets.ACR_USER_NAME }}'  # GitHub的secrets变量
-        password: '${{ secrets.ACR_PASS_WORD }}'  # GitHub的secrets变量
+        username: '${{ secrets.ACR_USERNAME }}'  # GitHub的secrets变量
+        password: '${{ secrets.ACR_PASSWORD }}'  # GitHub的secrets变量
         
     - name: Build and push Docker image
       run: |
