@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.publicze_platform.Pojo.RegionMapper">
+  <resultMap id="BaseResultMap" type="com.platform.publicze_platform.Dao.Region">
+    <!--@mbg.generated-->
+    <!--@Table region-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="region_no" jdbcType="VARCHAR" property="regionNo" />
+    <result column="paren_region_no" jdbcType="VARCHAR" property="parenRegionNo" />
+    <result column="is_popular" jdbcType="BIT" property="isPopular" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, region_no, paren_region_no, is_popular, `name`, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from region
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from region
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.Region" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into region (region_no, paren_region_no, is_popular, 
+      `name`, remark, create_time
+      )
+    values (#{regionNo,jdbcType=VARCHAR}, #{parenRegionNo,jdbcType=VARCHAR}, #{isPopular,jdbcType=BIT}, 
+      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.Region" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into region
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regionNo != null">
+        region_no,
+      </if>
+      <if test="parenRegionNo != null">
+        paren_region_no,
+      </if>
+      <if test="isPopular != null">
+        is_popular,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regionNo != null">
+        #{regionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parenRegionNo != null">
+        #{parenRegionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isPopular != null">
+        #{isPopular,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.publicze_platform.Dao.Region">
+    <!--@mbg.generated-->
+    update region
+    <set>
+      <if test="regionNo != null">
+        region_no = #{regionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parenRegionNo != null">
+        paren_region_no = #{parenRegionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isPopular != null">
+        is_popular = #{isPopular,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.publicze_platform.Dao.Region">
+    <!--@mbg.generated-->
+    update region
+    set region_no = #{regionNo,jdbcType=VARCHAR},
+      paren_region_no = #{parenRegionNo,jdbcType=VARCHAR},
+      is_popular = #{isPopular,jdbcType=BIT},
+      `name` = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getAllByParenRegionNo" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from region
+        where paren_region_no=#{parenRegionNo,jdbcType=VARCHAR}
+    </select>
+  <select id="getByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from region
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=INTEGER}
+            </if>
+            <if test="regionNo != null">
+                and region_no=#{regionNo,jdbcType=VARCHAR}
+            </if>
+            <if test="parenRegionNo != null">
+                and paren_region_no=#{parenRegionNo,jdbcType=VARCHAR}
+            </if>
+            <if test="isPopular != null">
+                and is_popular=#{isPopular,jdbcType=BIT}
+            </if>
+            <if test="name != null">
+                and `name`=#{name,jdbcType=VARCHAR}
+            </if>
+            <if test="remark != null">
+                and remark=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

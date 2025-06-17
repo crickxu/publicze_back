@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.publicze_platform.Pojo.CompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.platform.publicze_platform.Dao.CompanyInfo">
+    <!--@mbg.generated-->
+    <!--@Table company_info-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company_no" jdbcType="VARCHAR" property="companyNo" />
+    <result column="user_no" jdbcType="VARCHAR" property="userNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="credit_code" jdbcType="VARCHAR" property="creditCode" />
+    <result column="nature_id" jdbcType="INTEGER" property="natureId" />
+    <result column="nature_name" jdbcType="VARCHAR" property="natureName" />
+    <result column="scale" jdbcType="INTEGER" property="scale" />
+    <result column="province_addr" jdbcType="VARCHAR" property="provinceAddr" />
+    <result column="province_addr_name" jdbcType="VARCHAR" property="provinceAddrName" />
+    <result column="city_addr" jdbcType="VARCHAR" property="cityAddr" />
+    <result column="city_addr_name" jdbcType="VARCHAR" property="cityAddrName" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+    <result column="mobile_num" jdbcType="VARCHAR" property="mobileNum" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="event_type" jdbcType="INTEGER" property="eventType" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="sub_industry" jdbcType="VARCHAR" property="subIndustry" />
+    <result column="sub_industry_name" jdbcType="VARCHAR" property="subIndustryName" />
+    <result column="thr_industry" jdbcType="VARCHAR" property="thrIndustry" />
+    <result column="thr_industry_name" jdbcType="VARCHAR" property="thrIndustryName" />
+    <result column="industry_name" jdbcType="VARCHAR" property="industryName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, company_no, user_no, `name`, credit_code, nature_id,nature_name, `scale`, province_addr, province_addr_name,
+    city_addr,city_addr_name, contact, introduction, mobile_num, img_path, event_type, industry, sub_industry,sub_industry_name, thr_industry,thr_industry_name,
+    industry_name,create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectCompanys" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from company_info
+    <where>
+      <if test="provinceAddr != null">
+        and province_addr=#{provinceAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="cityAddr !=null ">
+        and city_addr=#{cityAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="industry !=null ">
+        and industry=#{industry,jdbcType=VARCHAR}
+      </if>
+      <if test="subIndustry !=null ">
+        and sub_industry=#{subIndustry,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="selectByCompanyInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from company_info
+    where company_no = #{companyNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.CompanyInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_info (company_no, user_no, `name`, 
+      credit_code, nature_id,nature_name, `scale`,
+      province_addr,province_addr_name, city_addr,city_addr_name, contact,
+      introduction, mobile_num, img_path, 
+      event_type, industry, sub_industry,sub_industry_name,
+      thr_industry,thr_industry_name,industry_name,create_time)
+    values (#{companyNo,jdbcType=VARCHAR}, #{userNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{creditCode,jdbcType=VARCHAR}, #{natureId,jdbcType=INTEGER}, #{natureName,jdbcType=VARCHAR}, #{scale,jdbcType=INTEGER},
+      #{provinceAddr,jdbcType=VARCHAR},#{provinceAddrName,jdbcType=VARCHAR}, #{cityAddr,jdbcType=VARCHAR},#{cityAddrName,jdbcType=VARCHAR},
+      #{contact,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR}, #{mobileNum,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR},
+      #{eventType,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, #{subIndustry,jdbcType=VARCHAR},#{subIndustryName,jdbcType=VARCHAR},
+    #{thrIndustry,jdbcType=VARCHAR},#{thrIndustryName,jdbcType=VARCHAR},#{industryName,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.CompanyInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyNo != null">
+        company_no,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="creditCode != null">
+        credit_code,
+      </if>
+      <if test="natureId != null">
+        nature_id,
+      </if>
+      <if test="natureName != null">
+        nature_name,
+      </if>
+      <if test="scale != null">
+        `scale`,
+      </if>
+      <if test="provinceAddr != null">
+        province_addr,
+      </if>
+      <if test="provinceAddrName != null">
+        province_addr_name,
+      </if>
+      <if test="cityAddr != null">
+        city_addr,
+      </if>
+      <if test="cityAddrName != null">
+        city_addr_name,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="mobileNum != null">
+        mobile_num,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+      <if test="eventType != null">
+        event_type,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="subIndustry != null">
+        sub_industry,
+      </if>
+      <if test="industryName != null">
+        industry_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyNo != null">
+        #{companyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="natureId != null">
+        #{natureId,jdbcType=INTEGER},
+      </if>
+      <if test="natureName != null">
+        #{natureName,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="provinceAddr != null">
+        #{provinceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceAddrName != null">
+        #{provinceAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityAddr != null">
+        #{cityAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cityAddrName != null">
+        #{cityAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobileNum != null">
+        #{mobileNum,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndustry != null">
+        #{subIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndustryName != null">
+        #{subIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="thrIndustry != null">
+        #{thrIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="thrIndustryName != null">
+        #{thrIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryName != null">
+        #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateImgPathByCompanyNo">
+    update company_info set img_path = #{imgPath} where company_no=#{companyNo}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.publicze_platform.Dao.CompanyInfo">
+    <!--@mbg.generated-->
+    update company_info
+    <set>
+      <if test="companyNo != null">
+        company_no = #{companyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        user_no = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        credit_code = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="natureId != null">
+        nature_id = #{natureId,jdbcType=INTEGER},
+      </if>
+      <if test="natureName != null">
+        nature_name = #{natureName,jdbcType=INTEGER},
+      </if>
+      <if test="scale != null">
+        `scale` = #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="provinceAddr != null">
+        province_addr = #{provinceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cityAddr != null">
+        city_addr = #{cityAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobileNum != null">
+        mobile_num = #{mobileNum,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        event_type = #{eventType,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndustry != null">
+        sub_industry = #{subIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndustryName != null">
+        sub_industry_name = #{subIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="thrIndustry != null">
+        thr_industry = #{thrIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="thrIndustryName != null">
+        thr_industry_name = #{thrIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryName != null">
+        industry_name = #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.publicze_platform.Dao.CompanyInfo">
+    <!--@mbg.generated-->
+    update company_info
+    set company_no = #{companyNo,jdbcType=VARCHAR},
+      user_no = #{userNo,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      nature_id = #{natureId,jdbcType=INTEGER},
+      nature_name = #{natureName,jdbcType=VARCHAR},
+      `scale` = #{scale,jdbcType=INTEGER},
+      province_addr = #{provinceAddr,jdbcType=VARCHAR},
+      city_addr = #{cityAddr,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      mobile_num = #{mobileNum,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      event_type = #{eventType,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      sub_industry = #{subIndustry,jdbcType=VARCHAR},
+      sub_industry_name = #{subIndustryName,jdbcType=VARCHAR},
+      thr_industry = #{thrIndustry,jdbcType=VARCHAR},
+      thr_industry_name = #{thrIndustryName,jdbcType=VARCHAR},
+      industry_name = #{industryName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

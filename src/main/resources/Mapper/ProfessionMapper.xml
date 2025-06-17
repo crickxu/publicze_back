@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.publicze_platform.Pojo.ProfessionMapper">
+  <resultMap id="BaseResultMap" type="com.platform.publicze_platform.Dao.Profession">
+    <!--@mbg.generated-->
+    <!--@Table profession-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="profession_no" jdbcType="VARCHAR" property="professionNo" />
+    <result column="lever" jdbcType="INTEGER" property="lever" />
+    <result column="profession_parent_no" jdbcType="VARCHAR" property="professionParentNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="is_enable" jdbcType="BIT" property="isEnable" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, profession_no, lever, profession_parent_no, `name`, is_enable, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from profession
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from profession
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.Profession" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into profession (profession_no, lever, profession_parent_no, 
+      `name`, is_enable, remark, 
+      create_time)
+    values (#{professionNo,jdbcType=VARCHAR}, #{lever,jdbcType=INTEGER}, #{professionParentNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{isEnable,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.platform.publicze_platform.Dao.Profession" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into profession
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="professionNo != null">
+        profession_no,
+      </if>
+      <if test="lever != null">
+        lever,
+      </if>
+      <if test="professionParentNo != null">
+        profession_parent_no,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="professionNo != null">
+        #{professionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lever != null">
+        #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="professionParentNo != null">
+        #{professionParentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.publicze_platform.Dao.Profession">
+    <!--@mbg.generated-->
+    update profession
+    <set>
+      <if test="professionNo != null">
+        profession_no = #{professionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lever != null">
+        lever = #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="professionParentNo != null">
+        profession_parent_no = #{professionParentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.publicze_platform.Dao.Profession">
+    <!--@mbg.generated-->
+    update profession
+    set profession_no = #{professionNo,jdbcType=VARCHAR},
+      lever = #{lever,jdbcType=INTEGER},
+      profession_parent_no = #{professionParentNo,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      is_enable = #{isEnable,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from profession
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=INTEGER}
+            </if>
+            <if test="professionNo != null">
+                and profession_no=#{professionNo,jdbcType=VARCHAR}
+            </if>
+            <if test="lever != null">
+                and lever=#{lever,jdbcType=INTEGER}
+            </if>
+            <if test="professionParentNo != null">
+                and profession_parent_no=#{professionParentNo,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                and `name`=#{name,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnable != null">
+                and is_enable=#{isEnable,jdbcType=BIT}
+            </if>
+            <if test="remark != null">
+                and remark=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

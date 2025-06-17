@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: publicze_platform
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 111.230.49.63:30884
+        namespace: 5cad89a3-7efe-489d-a1a5-37ad784386ba
+        name: publicze_platform
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        refresh-enabled: true
+        username: nacos
+        password: nacos
+      config:
+        server-addr: 111.230.49.63:30884
+        name: publicze_platform
+        namespace: 5cad89a3-7efe-489d-a1a5-37ad784386ba
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        refresh-enabled: true
+        username: nacos
+        password: nacos
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
