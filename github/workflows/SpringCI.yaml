@@ -1,0 +1,40 @@
+
+
+name: Deploy to ACR
+ 
+on:
+  push:
+    branches:
+      - main  # 触发分支，根据需要修改
+ 
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+ 
+    - name: Build with Maven
+      run: mvn clean package -DskipTests --file publicze_platform/pom.xml
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+      
+    - name: Login to ACR
+      uses: aliyun/acr-login@v1
+      with:
+        login-server: https://crpi-5ib73szbrjh3wsd8.cn-hangzhou.personal.cr.aliyuncs.com  # 你的ACR登录服务器地址，例如 registry.cn-hangzhou.aliyuncs.com
+        username: '${{ secrets.ACR_USER_NAME }}'  # GitHub的secrets变量
+        password: '${{ secrets.ACR_PASS_WORD }}'  # GitHub的secrets变量
+        
+    - name: Build and push Docker image
+      run: |
+        docker build -t registry.cn-hangzhou.aliyuncs.com/deep-space1/registry:${{ github.sha }} .
+        docker push registry.cn-hangzhou.aliyuncs.com/deep-space1/registry:${{ github.sha }}
